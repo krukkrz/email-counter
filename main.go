@@ -5,11 +5,12 @@ import (
 	"email-counter/service"
 	"flag"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber"
 )
 
-const port = 8000
+const defaultPort = "8000"
 
 var dbHostAddr string
 
@@ -22,6 +23,12 @@ func main() {
 	app.Post("/", service.CreateList)
 	app.Post("/:iteration", service.UpdateEmailsSentCounter)
 	app.Get("/:iteration", service.GetListReportByIteration)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Printf("Cannot find $PORT variable, using default value %s instead", defaultPort)
+		port = defaultPort
+	}
 
 	app.Listen(port)
 }
