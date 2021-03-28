@@ -33,6 +33,7 @@ func GetMongoDbCollection() *mongo.Collection {
 
 func getMongoDbClient() *mongo.Client {
 
+	log.Printf("Connecting to database with uri: %s", uri)
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(uri))
 
 	if err != nil {
