@@ -1,1 +1,1 @@
-web: bin/email-counter --db mongodb+srv://nobik_admin:132Kibn@cluster0.m1ub7.mongodb.net/emailslistsdb?retryWrites=true&w=majority
+web: bin/email-counter
