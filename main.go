@@ -3,7 +3,6 @@ package main
 import (
 	"email-counter/connector"
 	"email-counter/service"
-	"flag"
 	"log"
 	"os"
 
@@ -11,8 +10,6 @@ import (
 )
 
 const defaultPort = "8000"
-
-var dbHostAddr string
 
 func main() {
 
@@ -34,7 +31,6 @@ func main() {
 }
 
 func init() {
-	flag.StringVar(&dbHostAddr, "db", "", "Database connection path, in format host:port")
-	flag.Parse()
+	dbHostAddr := os.Args[0]
 	connector.SetDatabaseAddress(dbHostAddr)
 }
