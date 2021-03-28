@@ -10,10 +10,18 @@ import (
 )
 
 const (
-	uri            = "mongodb://localhost:27017"
+	localUri       = "mongodb://localhost:27017"
 	dbName         = "emailslistsdb"
 	collectionName = "list"
 )
+
+var uri = localUri
+
+func SetDatabaseAddress(address string) {
+	if address != "" {
+		uri = address
+	}
+}
 
 func GetMongoDbCollection() *mongo.Collection {
 	client := getMongoDbClient()
