@@ -12,9 +12,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-const dbName = "emailslistsdb"
-const collectionName = "list"
-
 type List struct {
 	_id             string `bson:"id,omitempty"`
 	Iteration       int    `bson:"iteration,omitempty"`
@@ -66,7 +63,7 @@ func setDefaultHeaders(c *fiber.Ctx) {
 }
 
 func getCollection() *mongo.Collection {
-	return connector.GetMongoDbCollection(dbName, collectionName)
+	return connector.GetMongoDbCollection()
 }
 
 func handleServerError(err error, c *fiber.Ctx) {

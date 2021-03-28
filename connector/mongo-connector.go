@@ -9,9 +9,21 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-const uri = "mongodb://localhost:27017"
+const (
+	uri            = "mongodb://localhost:27017"
+	dbName         = "emailslistsdb"
+	collectionName = "list"
+)
 
-func getMongoDbConnection() *mongo.Client {
+func GetMongoDbCollection() *mongo.Collection {
+	client := getMongoDbClient()
+
+	collection := client.Database(dbName).Collection(collectionName)
+
+	return collection
+}
+
+func getMongoDbClient() *mongo.Client {
 
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI(uri))
 
@@ -25,12 +37,4 @@ func getMongoDbConnection() *mongo.Client {
 	}
 
 	return client
-}
-
-func GetMongoDbCollection(DbName string, CollectionName string) *mongo.Collection {
-	client := getMongoDbConnection()
-
-	collection := client.Database(DbName).Collection(CollectionName)
-
-	return collection
 }
