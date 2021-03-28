@@ -31,6 +31,7 @@ func main() {
 }
 
 func init() {
-	dbHostAddr := os.Args[0]
+	// dbHostAddr := os.Args[0]
+	dbHostAddr := "mongodb+srv://nobik_admin:132Kibn@cluster0.m1ub7.mongodb.net/emailslistsdb?retryWrites=true&w=majority"
 	connector.SetDatabaseAddress(dbHostAddr)
 }
