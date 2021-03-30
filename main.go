@@ -19,7 +19,9 @@ func main() {
 	app.Get("/health", service.HealthCheck)
 	app.Post("/", service.CreateList)
 	app.Put("/:iteration", service.UpdateEmailsSentCounter)
+	app.Get("/", service.GetAll)
 	app.Get("/:iteration", service.GetListReportByIteration)
+	app.Put("/archive/:id", service.ArchiveIteration)
 
 	port := os.Getenv("PORT")
 	if port == "" {
