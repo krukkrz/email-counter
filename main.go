@@ -18,7 +18,7 @@ func main() {
 	app := fiber.New()
 	app.Get("/health", service.HealthCheck)
 	app.Post("/", service.CreateList)
-	app.Post("/:iteration", service.UpdateEmailsSentCounter)
+	app.Put("/:iteration", service.UpdateEmailsSentCounter)
 	app.Get("/:iteration", service.GetListReportByIteration)
 
 	port := os.Getenv("PORT")
