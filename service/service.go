@@ -24,6 +24,10 @@ func HealthCheck(c *fiber.Ctx) {
 	log.Printf("health check endpoint called from %s", c.IP())
 }
 
+func Options(c *fiber.Ctx) {
+	c.SendStatus(200)
+}
+
 func CreateList(c *fiber.Ctx) {
 	setDefaultHeaders(c)
 	collection := getCollection()
@@ -94,7 +98,6 @@ func getObjectIdFromPath(c *fiber.Ctx) primitive.ObjectID {
 
 func setDefaultHeaders(c *fiber.Ctx) {
 
-	c.Fasthttp.Response.Header.Add("Content-Type", "text/html; charset=utf-8")
 	c.Fasthttp.Response.Header.Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	c.Fasthttp.Response.Header.Add("Access-Control-Allow-Origin", "*")
 	c.Fasthttp.SetContentType("application/json")

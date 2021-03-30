@@ -23,6 +23,8 @@ func main() {
 	app.Get("/:iteration", service.GetListReportByIteration)
 	app.Put("/archive/:id", service.ArchiveIteration)
 
+	app.Options("*", service.Options)
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		log.Printf("Cannot find $PORT variable, using default value %s instead", defaultPort)
