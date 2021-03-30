@@ -93,6 +93,9 @@ func getObjectIdFromPath(c *fiber.Ctx) primitive.ObjectID {
 }
 
 func setDefaultHeaders(c *fiber.Ctx) {
+
+	c.Fasthttp.Response.Header.Add("Content-Type", "text/html; charset=utf-8")
+	c.Fasthttp.Response.Header.Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	c.Fasthttp.Response.Header.Add("Access-Control-Allow-Origin", "*")
 	c.Fasthttp.SetContentType("application/json")
 }
