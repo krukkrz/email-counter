@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 const defaultPort = "8000"
@@ -16,6 +17,9 @@ func main() {
 	log.Println("Running email counter...")
 
 	app := fiber.New()
+
+	app.Use(cors.New())
+
 	app.Get("/health", service.HealthCheck)
 	app.Post("/", service.CreateList)
 	app.Put("/:iteration", service.UpdateEmailsSentCounter)
